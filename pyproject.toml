@@ -1,0 +1,9 @@
+[project]
+name = "vidbgm"
+version = "0.1.0"
+description = "Add loopiong background music to videos from the terminal"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+vidbgm = "vidbgm.cli:main"

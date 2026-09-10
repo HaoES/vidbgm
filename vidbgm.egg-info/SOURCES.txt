@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+vidbgm/__init__.py
+vidbgm/cli.py
+vidbgm.egg-info/PKG-INFO
+vidbgm.egg-info/SOURCES.txt
+vidbgm.egg-info/dependency_links.txt
+vidbgm.egg-info/entry_points.txt
+vidbgm.egg-info/top_level.txt

@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: vidbgm
+Version: 0.1.0
+Summary: Add loopiong background music to videos from the terminal
+Requires-Python: >=3.11

@@ -1,0 +1,2 @@
+[console_scripts]
+vidbgm = vidbgm.cli:main
