@@ -25,28 +25,34 @@ def main() -> None:
     print(f"Source audio: {audio_source}")
     print(f"Volume: {volume}%")
 
-    preview_path = Path("previews/preview.mp4")
-    preview_path.parent.mkdir(exist_ok=True)
+    while True:
+        preview_path = Path("previews/preview.mp4")
+        preview_path.parent.mkdir(exist_ok=True)
 
-    mix_background_audio(
-        video_source,
-        audio_source,
-        preview_path,
-        volume,
-        duration_seconds=10,
-    )
+        mix_background_audio(
+            video_source,
+            audio_source,
+            preview_path,
+            volume,
+            duration_seconds=10,
+        )
 
-    print(f"Created preview: {preview_path}")
+        print(f"Created preview: {preview_path}")
 
-    answer = input("Create full video? [y/N]: ")
-    answer = answer.strip().lower()
-    if answer in ("yes", "y"):
-        output_path = Path("outputs/output.mp4")
-        output_path.parent.mkdir(exist_ok=True)
-        mix_background_audio(video_source, audio_source, output_path, volume)
-        print(f"Created full video at: {output_path}")
-    else:
+        answer = input("Choose: [c]reate full video, [v] change volume, [q] quit: ")
+        answer = answer.strip().lower()
+
+        if answer in ("create", "c"):
+            output_path = Path("outputs/output.mp4")
+            output_path.parent.mkdir(exist_ok=True)
+            mix_background_audio(video_source, audio_source, output_path, volume)
+            print(f"Created full video at: {output_path}")
+            break
+        if answer in ("volume", "v"):
+            volume = ask_volume()
+            continue
         print("Stopped after preview.")
+        break
 
 
 if __name__ == "__main__":
