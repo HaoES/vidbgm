@@ -21,6 +21,10 @@ def main() -> None:
     audio_source = Path(input("Background music path: "))
     volume = ask_volume()
 
+    print(f"Source video: {video_source}")
+    print(f"Source audio: {audio_source}")
+    print(f"Volume: {volume}%")
+
     preview_path = Path("previews/preview.mp4")
     preview_path.parent.mkdir(exist_ok=True)
 
@@ -34,9 +38,15 @@ def main() -> None:
 
     print(f"Created preview: {preview_path}")
 
-    print(f"Source video: {video_source}")
-    print(f"Source audio: {audio_source}")
-    print(f"Volume: {volume}%")
+    answer = input("Create full video? [y/N]: ")
+    answer = answer.strip().lower()
+    if answer in ("yes", "y"):
+        output_path = Path("outputs/output.mp4")
+        output_path.parent.mkdir(exist_ok=True)
+        mix_background_audio(video_source, audio_source, output_path, volume)
+        print(f"Created full video at: {output_path}")
+    else:
+        print("Stopped after preview.")
 
 
 if __name__ == "__main__":
