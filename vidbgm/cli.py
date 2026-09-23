@@ -21,15 +21,22 @@ def main() -> None:
     audio_source = Path(input("Background music path: "))
     volume = ask_volume()
 
-    output_path = Path("outputs/test-output.mp4")
-    output_path.parent.mkdir(exist_ok=True)
+    preview_path = Path("previews/preview.mp4")
+    preview_path.parent.mkdir(exist_ok=True)
+
+    mix_background_audio(
+        video_source,
+        audio_source,
+        preview_path,
+        volume,
+        duration_seconds=10,
+    )
+
+    print(f"Created preview: {preview_path}")
 
     print(f"Source video: {video_source}")
     print(f"Source audio: {audio_source}")
     print(f"Volume: {volume}%")
-
-    mix_background_audio(video_source, audio_source, output_path, volume)
-    print(f"Created: {output_path}")
 
 
 if __name__ == "__main__":
