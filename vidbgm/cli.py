@@ -1,5 +1,19 @@
 from pathlib import Path
+
 from vidbgm.ffmpeg import mix_background_audio
+
+
+def ask_existing_path(prompt: str) -> Path:
+    while True:
+        path = Path(input(prompt))
+
+        if not path.exists():
+            print("File does not exist, please try again")
+            continue
+        if not path.is_file():
+            print("Path must point to a file, please try again")
+            continue
+        return path
 
 
 def ask_volume() -> int:
@@ -17,8 +31,8 @@ def ask_volume() -> int:
 
 
 def main() -> None:
-    video_source = Path(input("Source video path: "))
-    audio_source = Path(input("Background music path: "))
+    video_source = ask_existing_path("Source video path: ")
+    audio_source = ask_existing_path("Background music path: ")
     volume = ask_volume()
 
     print(f"Source video: {video_source}")
